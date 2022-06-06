@@ -1,0 +1,16 @@
+src/env.ts
+dist/
+coverage/
+
+# Dependencies
+node_modules/
+
+# Clasp
+.clasp.json
+
+# Eslint
+.eslintcache
+
+# MacOS
+.DS_Store
+Thumbs.db
