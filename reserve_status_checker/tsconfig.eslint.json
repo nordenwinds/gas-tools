@@ -1,0 +1,14 @@
+{
+  "extends": "./tsconfig.json",
+  "include": [
+    "src/",
+    ".eslintrc.js",
+    "jest.config.js",
+    "babel.config.js",
+    "rollup.config.js"
+  ],
+  "exclude": [
+    "node_modules",
+    "dist"
+  ]
+}

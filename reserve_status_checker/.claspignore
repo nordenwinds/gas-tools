@@ -1,0 +1,12 @@
+# Deny All
+**/**
+
+# Allow .gs, .js, .ts
+!appsscript.json
+!**/*.gs
+!**/*.js
+!**/*.ts
+
+# Deny example files and test files
+env.example.ts
+**/*.spec.ts
