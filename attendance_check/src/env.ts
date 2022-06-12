@@ -1,5 +1,4 @@
-const props: GoogleAppsScript.Properties.Properties =
-  PropertiesService.getScriptProperties();
+const props: GoogleAppsScript.Properties.Properties = PropertiesService.getScriptProperties();
 
 export function env(key: string): string {
   const value: string | null = props.getProperty(key);

@@ -14,14 +14,9 @@ function handler(): void {
   //
   // キーワードを含む予定を探す
   //
-  const calendarService: CalendarService = new CalendarService(
-    config.calendar.id
-  );
+  const calendarService: CalendarService = new CalendarService(config.calendar.id);
 
-  const events = calendarService.findEventsByName(
-    targetDate,
-    config.calendar.keyword
-  );
+  const events = calendarService.findEventsByName(targetDate, config.calendar.keyword);
 
   if (events.length <= 0) {
     console.info(`No events found. Do nothing.`);
@@ -34,26 +29,18 @@ function handler(): void {
   const formService: FormService = new FormService(config.form.id);
 
   const form: GoogleAppsScript.Forms.Form = formService.copy(targetDate);
-  form.setDestination(
-    FormApp.DestinationType.SPREADSHEET,
-    config.spreadsheet.id
-  );
+  form.setDestination(FormApp.DestinationType.SPREADSHEET, config.spreadsheet.id);
 
   //
   // シートの名前を変更する
   //
-  const spreadsheetService: SpreadsheetService = new SpreadsheetService(
-    config.spreadsheet.id
-  );
+  const spreadsheetService: SpreadsheetService = new SpreadsheetService(config.spreadsheet.id);
   spreadsheetService.newSheet(targetDate);
 
   //
   // 出欠確認メッセージをLINEに送る
   //
-  const lineNotifyService: LineNotifyService = new LineNotifyService(
-    config.line.webhookUrl,
-    config.line.webhookToken
-  );
+  const lineNotifyService: LineNotifyService = new LineNotifyService(config.line.webhookUrl, config.line.webhookToken);
 
   /**
    * @var {string} message  LINEで送信するメッセージ
@@ -68,9 +55,7 @@ https://docs.google.com/spreadsheets/d/${config.spreadsheet.id}/
 -----
 ${events[0].getTitle()}
 ${targetDate.toLocaleDateString('ja-JP')}
-${events[0].getStartTime().toLocaleTimeString()} - ${events[0]
-    .getEndTime()
-    .toLocaleTimeString()}
+${events[0].getStartTime().toLocaleTimeString()} - ${events[0].getEndTime().toLocaleTimeString()}
 ${events[0].getLocation()}
 `;
 

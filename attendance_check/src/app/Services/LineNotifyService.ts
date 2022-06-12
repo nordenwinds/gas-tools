@@ -38,10 +38,7 @@ export class LineNotifyService {
     console.info(`LineNotifyService: Send a request to ${this.url} .`, {
       options,
     });
-    const response: GoogleAppsScript.URL_Fetch.HTTPResponse = UrlFetchApp.fetch(
-      this.url,
-      options
-    );
+    const response: GoogleAppsScript.URL_Fetch.HTTPResponse = UrlFetchApp.fetch(this.url, options);
 
     return response;
   }

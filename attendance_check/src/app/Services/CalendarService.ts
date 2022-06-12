@@ -13,26 +13,18 @@ export class CalendarService {
    *
    * @returns {GoogleAppsScript.Calendar.CalendarEvent[]}
    */
-  public findEventsByName(
-    targetDate: Date,
-    keyword: string
-  ): GoogleAppsScript.Calendar.CalendarEvent[] {
-    const events: GoogleAppsScript.Calendar.CalendarEvent[] =
-      this.calendar.getEventsForDay(targetDate);
+  public findEventsByName(targetDate: Date, keyword: string): GoogleAppsScript.Calendar.CalendarEvent[] {
+    const events: GoogleAppsScript.Calendar.CalendarEvent[] = this.calendar.getEventsForDay(targetDate);
 
     if (events.length <= 0) {
-      console.info(`CalendarService: No events found on ${targetDate}.`);
+      console.info(`CalendarService: No events found on ${targetDate.toLocaleDateString()}.`);
       return events;
     }
 
-    console.info(
-      `CalendarService: Search event where has '${keyword}' on its title.`
+    console.info(`CalendarService: Search event where has '${keyword}' on its title.`);
+    const aimedEvents: GoogleAppsScript.Calendar.CalendarEvent[] = events.filter(
+      (event: GoogleAppsScript.Calendar.CalendarEvent): boolean => event.getTitle().indexOf(keyword) > -1
     );
-    const aimedEvents: GoogleAppsScript.Calendar.CalendarEvent[] =
-      events.filter(
-        (event: GoogleAppsScript.Calendar.CalendarEvent): boolean =>
-          event.getTitle().indexOf(keyword) > -1
-      );
 
     return aimedEvents;
   }

@@ -77,10 +77,7 @@ export class Scraper {
       followRedirects: false,
     };
 
-    const response: GoogleAppsScript.URL_Fetch.HTTPResponse = UrlFetchApp.fetch(
-      url,
-      options
-    );
+    const response: GoogleAppsScript.URL_Fetch.HTTPResponse = UrlFetchApp.fetch(url, options);
 
     const responseBody: string = response.getContentText(config['charSet']);
     console.log(responseBody);
@@ -105,18 +102,11 @@ export class Scraper {
     };
 
     console.info(`Send a request to: ${url}`, { options });
-    const response: GoogleAppsScript.URL_Fetch.HTTPResponse = UrlFetchApp.fetch(
-      url,
-      options
-    );
+    const response: GoogleAppsScript.URL_Fetch.HTTPResponse = UrlFetchApp.fetch(url, options);
     console.log(response.getContentText(config['charSet']));
 
     const responseBody: string = response.getContentText(config['charSet']);
-    const iframeAttr: string = this.parseText(
-      responseBody,
-      '<iframe id="PageMain"',
-      '</iframe>'
-    );
+    const iframeAttr: string = this.parseText(responseBody, '<iframe id="PageMain"', '</iframe>');
     const sessionId: string = this.parseText(iframeAttr, 'g_sessionid=', '"');
 
     console.info(`Start session with ${sessionId}`);
@@ -138,9 +128,7 @@ export class Scraper {
    * @returns {void}
    */
   private updateCookie(): void {
-    const url: string =
-      this.baseUrl +
-      `cultos/reservge/gin_dsp_login?g_sessionid=${this.sessionId}`;
+    const url: string = this.baseUrl + `cultos/reservge/gin_dsp_login?g_sessionid=${this.sessionId}`;
     const options: GoogleAppsScript.URL_Fetch.URLFetchRequestOptions = {
       method: 'post',
       // payload: { u_genzai_idx: 0 },
@@ -148,10 +136,7 @@ export class Scraper {
       followRedirects: false,
     };
     console.info(`Send a request to: ${url}`, { options });
-    const response: GoogleAppsScript.URL_Fetch.HTTPResponse = UrlFetchApp.fetch(
-      url,
-      options
-    );
+    const response: GoogleAppsScript.URL_Fetch.HTTPResponse = UrlFetchApp.fetch(url, options);
     console.log(response.getContentText(config['charSet']));
 
     const responseHeader: ResponseHeaders = response.getHeaders();
@@ -171,11 +156,7 @@ export class Scraper {
    *
    * @returns {string} パース結果
    */
-  private parseText(
-    input: string,
-    keywordStart: string,
-    keywordEnd: string
-  ): string {
+  private parseText(input: string, keywordStart: string, keywordEnd: string): string {
     const start: number = input.indexOf(keywordStart) + keywordStart.length;
     if (start < keywordStart.length) {
       // It means `(start - keywordStart.length) < 0`
