@@ -1,5 +1,5 @@
 {
-  "name": "reserve_status_checker",
+  "name": "attendance_check",
   "version": "0.1.0",
   "description": "",
   "main": "src/app/main.ts",
