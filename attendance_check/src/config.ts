@@ -20,18 +20,18 @@ type Config = {
 
 export const config: Config = {
   spreadsheet: {
-    id: env['SHEET_ID'],
+    id: env('SHEET_ID'),
   },
   form: {
-    id: env['FORM_ID'],
+    id: env('FORM_ID'),
   },
   calendar: {
-    id: env['CALENDAR_ID'],
+    id: env('CALENDAR_ID'),
     targetDay: 7,
     keyword: '練習',
   },
   line: {
     webhookUrl: 'https://notify-api.line.me/api/notify',
-    webhookToken: env['LINE_WEBHOOK_TOKEN'],
+    webhookToken: env('LINE_WEBHOOK_TOKEN'),
   },
 } as const;
